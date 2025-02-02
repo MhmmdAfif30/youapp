@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 
 const UserSchema = new mongoose.Schema({
     id: { type: mongoose.Schema.Types.ObjectId, auto: true },
-    username: { type: String, required: true, unique: false },
+    username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    password_confirmation: { type: String, required: false },
+    password: { type: String },
+    password_confirmation: { type: String },
     createdAt: { type: Date, default: Date.now },
 });
 

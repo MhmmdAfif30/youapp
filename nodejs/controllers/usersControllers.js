@@ -2,8 +2,8 @@ require("dotenv").config();
 const Users = require("../models/usersModels");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { registerValidation, loginValidation } = require("../utils/validation");
-const { userDTO } = require("../utils/dto");
+const { registerValidation, loginValidation } = require("../utils/validation/usersValidation");
+const { userDTO } = require("../utils/dto/usersDto");
 const { JWT_SECRET_KEY } = process.env;
 
 module.exports = {
@@ -29,7 +29,10 @@ module.exports = {
 
             let encryptedPassword = await bcrypt.hash(password, 10);
 
-            let newUser = new Users({ username, email, password: encryptedPassword });
+            let newUser = new Users({ 
+                username, 
+                email, 
+                password: encryptedPassword });
             await newUser.save();
 
             return res.status(201).json({

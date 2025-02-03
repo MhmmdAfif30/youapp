@@ -11,11 +11,16 @@ app.use(bodyParser.json());
 const messageRouters = require("./routes/messageRoutes");
 app.use("/api/message", messageRouters);
 
+// Connect to database
 connectDB();
-connectRabbitMQ();
 
+// Consume messages from RabbitMQ
 consumeMessages((message) => {
-    console.log(`📢 Notifikasi: ${message.sender} mengirim pesan ke ${message.receiver}`);
+    if (message) {
+        console.log(`Notifikasi: ${message.sender} mengirim pesan ke ${message.receiver}`);
+    } else {
+        console.log("Tidak ada pesan diterima");
+    }
 });
 
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

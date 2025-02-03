@@ -1,6 +1,7 @@
 const Joi = require("joi");
 
 const aboutValidation = Joi.object({
+    userId: Joi.string().required(),
     image: Joi.string().pattern(/\.(jpg|jpeg|png)$/i).optional(),
     displayName: Joi.string().required(),
     gender: Joi.string().valid("Male", "Female").required(),

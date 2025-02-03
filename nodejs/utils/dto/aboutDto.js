@@ -1,5 +1,8 @@
 const aboutDTO = (about) => {
     return {
+        userId: about.userId,
+        username: about.username,
+        email: about.email,
         image: about.image,
         displayName: about.displayName,
         gender: about.gender,

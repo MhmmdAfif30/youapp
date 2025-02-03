@@ -14,7 +14,7 @@ module.exports = {
 
         try {
             let verified = jwt.verify(token, JWT_SECRET_KEY);
-            req.user = verified; // Menyimpan data pengguna ke request object
+            req.user = verified;
             next();
         } catch (error) {
             return res.status(401).json({

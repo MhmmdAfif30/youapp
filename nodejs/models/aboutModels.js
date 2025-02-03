@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const AboutSchema = new mongoose.Schema({
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     image: { type: String, required: true },
     displayName: { type: String, required: true },
     gender: { type: String, enum: ['Male', 'Female'], required: true },
